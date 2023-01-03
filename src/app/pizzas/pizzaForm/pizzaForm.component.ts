@@ -39,4 +39,14 @@ export class PizzaFormComponent implements OnInit {
     const lien = ['/pizza',this.pizza?.id];
     this.router.navigate(lien);
   }
+
+  isCompositionValid(ingredient: string): boolean{
+    if(this.pizza?.compositions?.length === 1 && this.hasIngredient(ingredient)){
+      return false;
+    }
+    if(this.pizza?.compositions && this.pizza?.compositions.length >= 3 && !this.hasIngredient(ingredient)){
+      return false;
+    }
+    return true;
+  }
 }

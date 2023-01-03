@@ -28,11 +28,11 @@
           <label for="nutriscore">Nutriscore</label>
           <input type="number" class="form-control" id="nutriscore"
                  required
-                 pattern="^[0-9]{1,2}$"
+                 pattern="^[0-9]{1}$"
                  [(ngModel)]="pizza.nutriScore" name="nutriscore"
                  #nutriscore="ngModel">
           <div [hidden]="nutriscore.valid || nutriscore.pristine" class="card-panel red accent-1">
-            Le nutriscore doit être compris entre 0 et 99.
+            Le nutriscore doit être compris entre 0 et 9.
           </div>
         </div>
 
@@ -46,6 +46,7 @@
                      id="{{ ingredient }}"
                      [value]="ingredient"
                      [checked]="hasIngredient(ingredient)"
+                     [disabled]="!isCompositionValid(ingredient)"
                      (change)="selectIngredient($event, ingredient)"
               />
               <span [attr.for]="ingredient">
